@@ -1,0 +1,42 @@
+/* ------------- CONSTANTS ------------------- */
+:root {
+  --color-blue: #121e6c;
+  --color-red: #ee424e;
+  --color-dark-gray: #606060;
+  --color-light-gray: #f3f3f3;
+  --color-background: #f6f4f9;
+  --color-text: #fff;
+}
+
+.navbar {
+  background: linear-gradient(to right, var(--color-blue), var(--color-red));
+  color: var(--color-light-gray);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  position: fixed;
+  height: 15vh;
+  width: 100%;
+}
+
+.navbar-logo {
+    margin-left: 3vw;
+}
+
+.navbar-items {
+  display: flex;
+  flex-direction: row;
+  gap: 3vw;
+  align-items: center;
+  justify-content: space-between;
+  margin-right: 8vw;
+}
+
+.navbar-help-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 5px;
+}
