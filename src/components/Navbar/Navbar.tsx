@@ -1,17 +1,16 @@
 import React from 'react';
 import Tooltip from '../Tooltip/Tooltip';
-import './styles.css'
-
+import './styles.css';
 
 const Navbar = () => {
   return (
-    <nav className='navbar'>
-      <div className='navbar-logo'>BOLD</div>
-      <div className='navbar-items'>
+    <nav className="navbar">
+      <h1 className="navbar-logo">BOLD</h1>
+      <div className="navbar-items">
         <p>Mi negocio</p>
-        <div className='navbar-help-container'>
+        <div className="navbar-help-container">
           <p>Ayuda</p>
-          <Tooltip />
+          <Tooltip type="help" text="Este es un tooltip de ayuda" />
         </div>
       </div>
     </nav>
