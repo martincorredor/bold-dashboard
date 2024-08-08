@@ -1,0 +1,65 @@
+:root {
+  --color-blue: #121e6c;
+  --color-red: #ee424e;
+  --color-dark-gray: #606060;
+  --color-light-gray: #f3f3f3;
+  --color-background: #f6f4f9;
+  --color-white: #fff;
+}
+
+.sales-table-container {
+  overflow-x: auto;
+}
+
+#sales {
+  border-collapse: collapse;
+  width: 100%;
+  background-color: var(--color-white);
+}
+
+#sales td,
+#sales th {
+  border-bottom: 1px solid var(--color-dark-gray);
+  align-items: start;
+  text-align: start;
+  vertical-align: start;
+  padding-left: 10px;
+}
+
+#sales tbody tr:nth-child(odd) {
+  border-left: 4px solid var(--color-blue);
+}
+
+#sales td {
+  padding: 5px 0px 25px 10px;
+}
+
+#sales tbody tr:hover {
+  background-color: var(--color-light-gray);
+  cursor: pointer;
+}
+
+.sale-status-label {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+  justify-content: start;
+  color: var(--color-blue);
+  font-weight: 600;
+}
+
+.payment-label {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 10vw;
+  min-width: 110px;
+  gap: 20px;
+}
+
+.bold-label {
+  font-weight: 600;
+  color: var(--color-blue);
+}

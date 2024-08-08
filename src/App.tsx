@@ -7,6 +7,7 @@ import DateFilterBar from './components/DateFilterBar/DateFilterBar';
 import SalesTable from './components/SalesTable/SalesTable';
 import Filter from './components/Filter/Filter';
 import SearchInput from './components/SearchInput/SearchInput';
+// import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   const [data, setData] = useState<any[]>([]);
