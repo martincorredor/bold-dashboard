@@ -9,7 +9,7 @@
 
 .card {
   width: 25vw;
-  min-width: 200px;
+  min-width: 210px;
   border-radius: 20px;
   display: flex;
   flex-direction: column;
@@ -26,6 +26,7 @@
   justify-content: space-between;
   padding: 0px 15px;
   color: var(--color-light-gray);
+  gap: 10px;
 }
 
 .card-content {
