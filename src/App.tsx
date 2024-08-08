@@ -29,7 +29,7 @@ function App() {
       <div className="content">
         {/* <TotalSalesCard selectedPeriod="Junio" amount={394.561} /> */}
         {/* <DateFilterBar handleDateFilter={() => {}} /> */}
-        <SalesTable data={data}/>
+        {/* <SalesTable data={data}/> */}
       </div>
     </div>
   );

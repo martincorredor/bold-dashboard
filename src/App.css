@@ -1,4 +1,5 @@
 .content{
     position: absolute;
     margin: 20vh 4vw;
+    min-width: 90%;
 }
