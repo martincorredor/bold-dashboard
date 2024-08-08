@@ -4,6 +4,7 @@ import './App.css';
 import Navbar from './components/Navbar/Navbar';
 import TotalSalesCard from './components/TotalSalesCard/TotalSalesCard';
 import DateFilterBar from './components/DateFilterBar/DateFilterBar';
+import SalesTable from './components/SalesTable/SalesTable';
 
 function App() {
   const [data, setData] = useState<any[]>([]);
@@ -28,6 +29,7 @@ function App() {
       <div className="content">
         {/* <TotalSalesCard selectedPeriod="Junio" amount={394.561} /> */}
         {/* <DateFilterBar handleDateFilter={() => {}} /> */}
+        <SalesTable data={data}/>
       </div>
     </div>
   );
