@@ -1,8 +1,9 @@
 export interface Props {
-    handleDateFilter: () => void;
+  selectedFilter: string;
+  handleFilterChange: (filter: string) => void;
 }
 
 export interface filterButtonInterface {
   text: string;
-  action: () => void;
+  filter: string;
 }

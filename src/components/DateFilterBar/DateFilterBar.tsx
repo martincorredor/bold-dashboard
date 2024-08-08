@@ -2,16 +2,11 @@ import React, { useState } from 'react';
 import './styles.css';
 import { Props, filterButtonInterface } from './interface';
 
-const DateFilterBar: React.FC<Props> = ({ handleDateFilter }) => {
-  const [selectedButton, setSelectedButton] = useState<string | null>(null);
-
-  const filterButton: React.FC<filterButtonInterface> = ({ text, action }) => (
+const DateFilterBar: React.FC<Props> = ({ selectedFilter, handleFilterChange }) => {
+  const filterButton: React.FC<filterButtonInterface> = ({ text, filter }) => (
     <button
-      className={`filterBtn ${selectedButton === text ? 'selected' : ''}`}
-      onClick={() => {
-        action();
-        setSelectedButton(text);
-      }}
+      className={`filterBtn ${selectedFilter === filter ? 'selected' : ''}`}
+      onClick={() => handleFilterChange(filter)}
     >
       {text}
     </button>
@@ -19,9 +14,9 @@ const DateFilterBar: React.FC<Props> = ({ handleDateFilter }) => {
 
   return (
     <div className="filter-container">
-      {filterButton({ text: 'Hoy', action: handleDateFilter })}
-      {filterButton({ text: 'Esta semana', action: handleDateFilter })}
-      {filterButton({ text: 'Junio', action: handleDateFilter })}
+      {filterButton({ text: 'Hoy', filter: 'today' })}
+      {filterButton({ text: 'Esta semana', filter: 'week' })}
+      {filterButton({ text: 'Junio', filter: 'june' })}
     </div>
   );
 };

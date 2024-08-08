@@ -1,3 +1,4 @@
 export interface Props {
-    data: any[];
+  filteredData: any[];
+  tableTitle: string;
 }

@@ -1,35 +1,35 @@
 :root {
-    --color-blue: #121e6c;
-    --color-red: #ee424e;
-    --color-dark-gray: #606060;
-    --color-light-gray: #f3f3f3;
-    --color-background: #f6f4f9;
-    --color-white: #fff;
-  }
+  --color-blue: #121e6c;
+  --color-red: #ee424e;
+  --color-dark-gray: #606060;
+  --color-light-gray: #f3f3f3;
+  --color-background: #f6f4f9;
+  --color-white: #fff;
+}
 
 .filter-container {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    width: 60vw;
-    padding: 7px 0;
-    background-color: var(--color-white);
-    border-radius: 8px;
-  }
-  
-.filterBtn {
-  width: 15vw;
-  height: 2rem;
-  border: none;
-  cursor: pointer;
-  border-radius: 16px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  padding: 7px 0;
   background-color: var(--color-white);
-  transition: background 0.3s, border-radius 0.3s;
-  color: var(--color-dark-gray);
+  border-radius: 8px;
+  /* box-shadow: 1px 1px 13px 1px var(--color-dark-gray); */
+}
+
+.filterBtn {
+width: 15vw;
+min-width: 100px;
+height: 2rem;
+border: none;
+cursor: pointer;
+border-radius: 16px;
+background-color: var(--color-white);
+transition: background 0.3s, border-radius 0.3s;
+color: var(--color-dark-gray);
 }
 
 .selected {
-    background-color: var(--color-light-gray);
+  background-color: var(--color-light-gray);
 }
-
-

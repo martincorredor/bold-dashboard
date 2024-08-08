@@ -9,12 +9,13 @@
 
 .card {
   width: 25vw;
+  min-width: 200px;
   border-radius: 20px;
   display: flex;
   flex-direction: column;
   overflow: hidden;
   background-color: var(--color-white);
-  box-shadow: 3px 2px 13px 1px var(--color-dark-gray);
+  box-shadow: 3px 2px 13px 2px var(--color-light-gray);
 }
 
 .card-title {
@@ -44,5 +45,5 @@
 }
 
 .date {
-    margin: 0 0 10px 0;
+  margin: 0 0 10px 0;
 }
