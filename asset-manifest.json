@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/bold-dashboard/static/css/main.5ec5f225.css",
-    "main.js": "/bold-dashboard/static/js/main.e128962e.js",
-    "static/js/453.14049174.chunk.js": "/bold-dashboard/static/js/453.14049174.chunk.js",
+    "main.css": "/bold-dashboard/static/css/main.60c32752.css",
+    "main.js": "/bold-dashboard/static/js/main.e7992e56.js",
+    "static/js/453.ccc13284.chunk.js": "/bold-dashboard/static/js/453.ccc13284.chunk.js",
     "index.html": "/bold-dashboard/index.html",
-    "main.5ec5f225.css.map": "/bold-dashboard/static/css/main.5ec5f225.css.map",
-    "main.e128962e.js.map": "/bold-dashboard/static/js/main.e128962e.js.map",
-    "453.14049174.chunk.js.map": "/bold-dashboard/static/js/453.14049174.chunk.js.map"
+    "main.60c32752.css.map": "/bold-dashboard/static/css/main.60c32752.css.map",
+    "main.e7992e56.js.map": "/bold-dashboard/static/js/main.e7992e56.js.map",
+    "453.ccc13284.chunk.js.map": "/bold-dashboard/static/js/453.ccc13284.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.5ec5f225.css",
-    "static/js/main.e128962e.js"
+    "static/css/main.60c32752.css",
+    "static/js/main.e7992e56.js"
   ]
 }
