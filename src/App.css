@@ -89,3 +89,12 @@
   align-items: center;
   padding: 0 15px;
 }
+
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  top: 20vh;
+  gap: 3rem;
+}

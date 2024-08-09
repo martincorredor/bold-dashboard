@@ -7,6 +7,7 @@ import SalesTable from './components/SalesTable/SalesTable';
 import Filter from './components/Filter/Filter';
 import SearchInput from './components/SearchInput/SearchInput';
 import { formatToCurrency } from './utils/currencyUtils';
+import CircularProgress from '@mui/material/CircularProgress';
 
 function App() {
   const [data, setData] = useState<any[]>([]);
@@ -16,10 +17,6 @@ function App() {
   const [searchTerm, setSearchTerm] = useState('');
   const [formattedDate, setFormattedDate] = useState('');
   const [dataToTable, setDataToTable] = useState(filteredData);
-
-  console.log('data:', data);
-  console.log('filtered Data:', filteredData);
-  console.log('dataToTable:', dataToTable)
 
 
   useEffect(() => {
@@ -161,31 +158,43 @@ function App() {
     <div className="App">
       <Navbar />
       <div className="content">
-        <div className="container">
-          <div className="total-sales-card">
-            <TotalSalesCard
-              selectedPeriod={selectedFilter}
-              amount={getTotalAmount()}
-              formattedDate={formattedDate}
-            />
+        {data.length !== 0 ? (
+          <>
+            <div className="container">
+              <div className="total-sales-card">
+                <TotalSalesCard
+                  selectedPeriod={selectedFilter}
+                  amount={getTotalAmount()}
+                  formattedDate={formattedDate}
+                />
+              </div>
+              <div className="date-filter-bar">
+                <DateFilterBar
+                  selectedFilter={selectedFilter}
+                  handleFilterChange={handleFilterChange}
+                />
+              </div>
+              <div className="filter">
+                <Filter applyFilters={applySalesTypeFilters} />
+              </div>
+            </div>
+            <div className="table-container">
+              <div className="table-title">
+                <p>{tableTitle}</p>
+              </div>
+              <SearchInput
+                searchTerm={searchTerm}
+                handleSearch={handleSearch}
+              />
+              <SalesTable filteredData={dataToTable} tableTitle={tableTitle} />
+            </div>
+          </>
+        ) : (
+          <div className='loading-container'>
+            <CircularProgress />
+            <p>Espera un poco, estamos trabajando lo más rápido que podemos...</p>
           </div>
-          <div className="date-filter-bar">
-            <DateFilterBar
-              selectedFilter={selectedFilter}
-              handleFilterChange={handleFilterChange}
-            />
-          </div>
-          <div className="filter">
-            <Filter applyFilters={applySalesTypeFilters} />
-          </div>
-        </div>
-        <div className="table-container">
-          <div className="table-title">
-            <p>{tableTitle}</p>
-          </div>
-          <SearchInput searchTerm={searchTerm} handleSearch={handleSearch} />
-          <SalesTable filteredData={dataToTable} tableTitle={tableTitle} />
-        </div>
+        )}
       </div>
     </div>
   );
