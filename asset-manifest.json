@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/bold-dashboard/static/css/main.60c32752.css",
-    "main.js": "/bold-dashboard/static/js/main.e7992e56.js",
+    "main.css": "/bold-dashboard/static/css/main.513ece82.css",
+    "main.js": "/bold-dashboard/static/js/main.67ca95fd.js",
     "static/js/453.ccc13284.chunk.js": "/bold-dashboard/static/js/453.ccc13284.chunk.js",
     "index.html": "/bold-dashboard/index.html",
-    "main.60c32752.css.map": "/bold-dashboard/static/css/main.60c32752.css.map",
-    "main.e7992e56.js.map": "/bold-dashboard/static/js/main.e7992e56.js.map",
+    "main.513ece82.css.map": "/bold-dashboard/static/css/main.513ece82.css.map",
+    "main.67ca95fd.js.map": "/bold-dashboard/static/js/main.67ca95fd.js.map",
     "453.ccc13284.chunk.js.map": "/bold-dashboard/static/js/453.ccc13284.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.60c32752.css",
-    "static/js/main.e7992e56.js"
+    "static/css/main.513ece82.css",
+    "static/js/main.67ca95fd.js"
   ]
 }
