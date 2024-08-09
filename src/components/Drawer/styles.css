@@ -1,0 +1,29 @@
+.drawer-content {
+  width: 25vw;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.drawer-close {
+  margin-left: auto;
+  cursor: pointer;
+}
+
+.sale-status-container {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.check-icon {
+  color: green;
+}
+
+.cancel-icon {
+  color: red;
+}

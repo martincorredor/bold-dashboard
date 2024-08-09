@@ -2,6 +2,10 @@ import React, { useState } from 'react';
 import { Props } from './interface';
 import './styles.css';
 import { formatToCurrency } from '../../utils/currencyUtils';
+import Button from '@mui/material/Button';
+import CustomDrawer from '../Drawer/Drawer';
+import InsertLinkIcon from '@mui/icons-material/InsertLink';
+import PhoneAndroidIcon from '@mui/icons-material/PhoneAndroid';
 
 const STATUS = {
   SUCCESSFUL: 'SUCCESSFUL',
@@ -13,36 +17,40 @@ const FRANCHISE = {
   VISA: 'VISA',
 };
 
+const SALES_TYPE = {
+  PAYMENT_LINK: 'PAYMENT_LINK',
+  TERMINAL: 'TERMINAL',
+};
+
 const SalesTable: React.FC<Props> = ({ filteredData, tableTitle }) => {
-  const getStatus = (status: string) => {
-    return status === STATUS.SUCCESSFUL ? (
+  const [open, setOpen] = useState(false);
+  const [selectedSale, setSelectedSale] = useState(null);
+
+  const handleOpenDrawer = (sale: any) => {
+    setSelectedSale(sale);
+    selectedSale !== null && setOpen(true);
+  };
+
+  const toggleDrawer = (newOpen: boolean) => {
+    setOpen(newOpen);
+  };
+
+  const getSalesTypeIcon = (type: string) => {
+    const paymentIcon = <InsertLinkIcon />;
+    const dataphoneIcon = <PhoneAndroidIcon />;
+
+    return type === SALES_TYPE.PAYMENT_LINK ? paymentIcon : dataphoneIcon;
+  };
+
+  const getStatus = (item: any) => {
+    return item.status === STATUS.SUCCESSFUL ? (
       <div className="sale-status-label">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="16"
-          height="16"
-          fill="currentColor"
-          className="bi bi-phone"
-          viewBox="0 0 16 16"
-        >
-          <path d="M11 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM5 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z" />
-          <path d="M8 14a1 1 0 1 0 0-2 1 1 0 0 0 0 2" />
-        </svg>
+        {getSalesTypeIcon(item.salesType)}
         <p>Cobro exitoso</p>
       </div>
-    ) : status === STATUS.REJECTED ? (
+    ) : item.status === STATUS.REJECTED ? (
       <div className="sale-status-label">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="16"
-          height="16"
-          fill="currentColor"
-          className="bi bi-link-45deg"
-          viewBox="0 0 16 16"
-        >
-          <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1 1 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4 4 0 0 1-.128-1.287z" />
-          <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243z" />
-        </svg>
+        {getSalesTypeIcon(item.salesType)}
         <p>Cobro no realizado</p>
       </div>
     ) : (
@@ -118,17 +126,17 @@ const SalesTable: React.FC<Props> = ({ filteredData, tableTitle }) => {
     );
     switch (franchise) {
       case FRANCHISE.MASTERCARD:
-        return <div className='cardIcon'>{mastercardIcon}</div>;
+        return <div className="cardIcon">{mastercardIcon}</div>;
       case FRANCHISE.VISA:
-        return <div className='cardIcon'>{visaIcon}</div>;
+        return <div className="cardIcon">{visaIcon}</div>;
       default:
-        return <div className='cardIcon'>{cardIcon}</div>;
+        return <div className="cardIcon">{cardIcon}</div>;
     }
   };
 
   const getPaymentMethod = (item: any) => {
     return item.paymentMethod === 'CARD' ? (
-      <div className='payment-label'>
+      <div className="payment-label">
         {getCardIcon(item.franchise)} <p>****{item.transactionReference}</p>
       </div>
     ) : (
@@ -150,16 +158,21 @@ const SalesTable: React.FC<Props> = ({ filteredData, tableTitle }) => {
         </thead>
         <tbody>
           {filteredData.map((item) => (
-            <tr key={item.id}>
-              <td className='bold-label'>{getStatus(item.status)}</td>
+            <tr key={item.id} onClick={() => handleOpenDrawer(item)}>
+              <td className="bold-label">{getStatus(item)}</td>
               <td>{new Date(item.createdAt).toLocaleString()}</td>
               <td>{getPaymentMethod(item)}</td>
               <td>{item.id}</td>
-              <td className='bold-label'>{formatToCurrency(item.amount)}</td>
+              <td className="bold-label">{formatToCurrency(item.amount)}</td>
             </tr>
           ))}
         </tbody>
       </table>
+      <CustomDrawer
+        open={open}
+        handleOpen={toggleDrawer}
+        selectedSale={selectedSale}
+      />
     </div>
   );
 };
