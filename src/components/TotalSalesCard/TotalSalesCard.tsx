@@ -15,8 +15,8 @@ const TotalSalesCard: React.FC<Props> = ({ selectedPeriod, amount, formattedDate
         return 'Total de ventas de hoy';
       case 'week':
         return 'Total de ventas de esta semana';
-      case 'june':
-        return 'Total de ventas de Junio';
+      case 'september':
+        return 'Total de ventas de Septiembre';
       default:
         return 'Total de ventas';
     }

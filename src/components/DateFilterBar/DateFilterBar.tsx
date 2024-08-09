@@ -16,7 +16,7 @@ const DateFilterBar: React.FC<Props> = ({ selectedFilter, handleFilterChange }) 
     <div className="filter-container">
       {filterButton({ text: 'Hoy', filter: 'today' })}
       {filterButton({ text: 'Esta semana', filter: 'week' })}
-      {filterButton({ text: 'Junio', filter: 'june' })}
+      {filterButton({ text: 'Septiembre', filter: 'september' })}
     </div>
   );
 };

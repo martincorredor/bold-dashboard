@@ -77,8 +77,8 @@ function App() {
           } ${today.getFullYear()}`;
         case 'week':
           return `${monthNames[today.getMonth()]}, ${today.getFullYear()}`;
-        case 'june':
-          return `Junio, ${today.getFullYear()}`;
+        case 'september':
+          return `Septiembre, ${today.getFullYear()}`;
         default:
           return '';
       }
@@ -96,10 +96,10 @@ function App() {
     let newFilteredData;
     const today = new Date().setHours(0, 0, 0, 0);
     const weekAgo = today - 7 * 24 * 60 * 60 * 1000;
-    const juneStart = new Date(new Date().getFullYear(), 5, 1).getTime();
-    const juneEnd = new Date(
+    const septemberStart = new Date(new Date().getFullYear(), 8, 1).getTime();
+    const septemberEnd = new Date(
       new Date().getFullYear(),
-      5,
+      8,
       30,
       23,
       59,
@@ -115,10 +115,10 @@ function App() {
         setTableTitle('Tus ventas de esta semana');
         newFilteredData = data.filter((item) => item.createdAt >= weekAgo);
         break;
-      case 'june':
-        setTableTitle('Tus ventas de Junio');
+      case 'september':
+        setTableTitle('Tus ventas de Septiembre');
         newFilteredData = data.filter(
-          (item) => item.createdAt >= juneStart && item.createdAt <= juneEnd
+          (item) => item.createdAt >= septemberStart && item.createdAt <= septemberEnd
         );
         break;
       default:
