@@ -3,7 +3,7 @@ import './styles.css';
 import { Props } from './interface';
 import Tooltip from '../Tooltip/Tooltip';
 
-const TotalSalesCard: React.FC<Props> = ({ selectedPeriod, amount }) => {
+const TotalSalesCard: React.FC<Props> = ({ selectedPeriod, amount, formattedDate }) => {
   const [totalSalesLabel, setTotalSalesLabel] =
     useState<string>('Total de ventas');
 
@@ -36,8 +36,8 @@ const TotalSalesCard: React.FC<Props> = ({ selectedPeriod, amount }) => {
         />
       </div>
       <div className="card-content">
-        <h2 className="amount">$ {amount}</h2>
-        <p className="date">Junio 2024</p>
+        <h2 className="amount">{amount}</h2>
+        <p className="date">{formattedDate}</p>
       </div>
     </div>
   );

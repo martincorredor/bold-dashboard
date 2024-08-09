@@ -1,4 +1,5 @@
 export interface Props {
     selectedPeriod: string;
-    amount: number;
+    amount: string;
+    formattedDate: string;
 }

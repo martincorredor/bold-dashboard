@@ -7,7 +7,7 @@ import DateFilterBar from './components/DateFilterBar/DateFilterBar';
 import SalesTable from './components/SalesTable/SalesTable';
 import Filter from './components/Filter/Filter';
 import SearchInput from './components/SearchInput/SearchInput';
-// import 'bootstrap/dist/css/bootstrap.min.css';
+import { formatToCurrency } from './utils/currencyUtils';
 
 function App() {
   const [data, setData] = useState<any[]>([]);
@@ -15,6 +15,7 @@ function App() {
   const [tableTitle, setTableTitle] = useState('Todas tus ventas');
   const [selectedFilter, setSelectedFilter] = useState('all');
   const [searchTerm, setSearchTerm] = useState('');
+  const [formattedDate, setFormattedDate] = useState('');
 
   useEffect(() => {
     const fetchData = async () => {
@@ -32,6 +33,41 @@ function App() {
   useEffect(() => {
     setFilteredData(data);
   }, [data]);
+
+  useEffect(() => {
+    const formatDate = (filter: string) => {
+      const today = new Date();
+      const monthNames = [
+        'Enero',
+        'Febrero',
+        'Marzo',
+        'Abril',
+        'Mayo',
+        'Junio',
+        'Julio',
+        'Agosto',
+        'Septiembre',
+        'Octubre',
+        'Noviembre',
+        'Diciembre',
+      ];
+
+      switch (filter) {
+        case 'today':
+          return `${today.getDate()} de ${
+            monthNames[today.getMonth()]
+          } ${today.getFullYear()}`;
+        case 'week':
+          return `${monthNames[today.getMonth()]}, ${today.getFullYear()}`;
+        case 'june':
+          return `Junio, ${today.getFullYear()}`;
+        default:
+          return '';
+      }
+    };
+
+    setFormattedDate(formatDate(selectedFilter));
+  }, [selectedFilter]);
 
   const handleFilterChange = (filter: string) => {
     setSelectedFilter(filter);
@@ -81,13 +117,21 @@ function App() {
     setFilteredData(newFilteredData);
   };
 
+  const getTotalAmount = () => {
+    return formatToCurrency(filteredData.reduce((accumulator, current) => accumulator + (current.amount || 0), 0))
+  };
+
   return (
     <div className="App">
       <Navbar />
       <div className="content">
         <div className="container">
           <div className="total-sales-card">
-            <TotalSalesCard selectedPeriod={selectedFilter} amount={394.561} />
+            <TotalSalesCard
+              selectedPeriod={selectedFilter}
+              amount={getTotalAmount()}
+              formattedDate={formattedDate}
+            />
           </div>
           <div className="date-filter-bar">
             <DateFilterBar
@@ -100,7 +144,9 @@ function App() {
           </div>
         </div>
         <div className="table-container">
-          <div className='table-title'><p>{tableTitle}</p></div>
+          <div className="table-title">
+            <p>{tableTitle}</p>
+          </div>
           <SearchInput searchTerm={searchTerm} handleSearch={handleSearch} />
           <SalesTable filteredData={filteredData} tableTitle={tableTitle} />
         </div>
