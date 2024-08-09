@@ -1,1 +1,3 @@
-export interface Props {}
+export interface Props {
+    applyFilters: (type: any) => void;
+}

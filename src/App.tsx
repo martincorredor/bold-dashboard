@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import Navbar from './components/Navbar/Navbar';
 import TotalSalesCard from './components/TotalSalesCard/TotalSalesCard';
@@ -16,6 +15,17 @@ function App() {
   const [selectedFilter, setSelectedFilter] = useState('all');
   const [searchTerm, setSearchTerm] = useState('');
   const [formattedDate, setFormattedDate] = useState('');
+  const [dataToTable, setDataToTable] = useState(filteredData);
+
+  console.log('data:', data);
+  console.log('filtered Data:', filteredData);
+  console.log('dataToTable:', dataToTable)
+
+
+  useEffect(() => {
+    setDataToTable(filteredData)
+  }, [filteredData])
+  
 
   useEffect(() => {
     const fetchData = async () => {
@@ -117,8 +127,34 @@ function App() {
     setFilteredData(newFilteredData);
   };
 
+  const applySalesTypeFilters = (filters: string[]) => {
+    if (filters.includes('ALL')) {
+      setDataToTable(filteredData);
+      return;
+    }
+
+    let newFilteredData = filteredData;
+    if (filters.includes('TERMINAL')) {
+      newFilteredData = newFilteredData.filter(
+        (item) => item.salesType === 'TERMINAL'
+      );
+    }
+    if (filters.includes('PAYMENT_LINK')) {
+      newFilteredData = newFilteredData.filter(
+        (item) => item.salesType === 'PAYMENT_LINK'
+      );
+    }
+
+    setDataToTable(newFilteredData);
+  };
+
   const getTotalAmount = () => {
-    return formatToCurrency(filteredData.reduce((accumulator, current) => accumulator + (current.amount || 0), 0))
+    return formatToCurrency(
+      filteredData.reduce(
+        (accumulator, current) => accumulator + (current.amount || 0),
+        0
+      )
+    );
   };
 
   return (
@@ -140,7 +176,7 @@ function App() {
             />
           </div>
           <div className="filter">
-            <Filter />
+            <Filter applyFilters={applySalesTypeFilters} />
           </div>
         </div>
         <div className="table-container">
@@ -148,7 +184,7 @@ function App() {
             <p>{tableTitle}</p>
           </div>
           <SearchInput searchTerm={searchTerm} handleSearch={handleSearch} />
-          <SalesTable filteredData={filteredData} tableTitle={tableTitle} />
+          <SalesTable filteredData={dataToTable} tableTitle={tableTitle} />
         </div>
       </div>
     </div>

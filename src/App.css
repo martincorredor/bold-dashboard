@@ -66,12 +66,14 @@
   }
 }
 
+
 .table-container {
   margin-top: 30px;
   width: 90vw;
   padding: 0;
   display: flex;
   flex-direction: column;
+  position: relative;
 }
 
 .table-title {
