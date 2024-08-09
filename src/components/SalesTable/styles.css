@@ -57,6 +57,7 @@
   width: 10vw;
   min-width: 110px;
   gap: 20px;
+  max-width: fit-content;
 }
 
 .bold-label {

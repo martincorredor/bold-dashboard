@@ -17,6 +17,7 @@
   justify-content: space-between;
   position: fixed;
   height: 15vh;
+  max-height: 96px;
   width: 100%;
   z-index: 1000;
 }
