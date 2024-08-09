@@ -1,10 +1,22 @@
+:root {
+  --color-blue: #121e6c;
+  --color-red: #ee424e;
+  --color-dark-gray: #606060;
+  --color-light-gray: #f3f3f3;
+  --color-background: #f6f4f9;
+  --color-white: #fff;
+}
+
 .drawer-content {
   width: 25vw;
+  min-width: 250px;
   padding: 15px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
+  color: var(--color-dark-gray);
+  line-height: 0.2rem;
 }
 
 .drawer-close {
@@ -13,11 +25,12 @@
 }
 
 .sale-status-container {
-  margin-top: 30px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  color: #000;
+  font-weight: 600;
 }
 
 .check-icon {
@@ -26,4 +39,86 @@
 
 .cancel-icon {
   color: red;
+}
+
+.custom-icon {
+  width: 1rem !important;
+}
+
+.sale-description {
+  width: 95%;
+}
+
+.section-one {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  height: fit-content;
+  margin-top: 30px;
+}
+
+.section-one h2 {
+  margin: 0;
+  padding: 0;
+  line-height: 0.8rem;
+  font-size: 1.3rem;
+  color: var(--color-blue);
+  font-weight: 500;
+}
+
+.section-two {
+  margin-top: 60px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.drawer-saleId {
+  color: #000;
+  font-weight: 600;
+}
+
+.drawer-deduction-number {
+  color: var(--color-red);
+  font-weight: 600;
+}
+
+.payment-content {
+  border-top: 2px solid var(--color-blue);
+  width: 100%;
+  margin-top: 20px;
+}
+
+.item-colums {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.drawer-payment-label {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+}
+
+.sale-type-label {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-weight: 600;
+  color: #000;
+  gap: 10px;
+}
+
+@media (max-width: 768px) {
+  .section-two {
+    font-size: 0.7rem;
+  }
 }

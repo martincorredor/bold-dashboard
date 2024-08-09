@@ -8,6 +8,7 @@ import CancelIcon from '@mui/icons-material/Cancel';
 import InsertLinkIcon from '@mui/icons-material/InsertLink';
 import PhoneAndroidIcon from '@mui/icons-material/PhoneAndroid';
 import { formatToCurrency } from '../../utils/currencyUtils';
+import { dividerClasses } from '@mui/material';
 
 const STATUS = {
   SUCCESSFUL: 'SUCCESSFUL',
@@ -25,33 +26,38 @@ const SALES_TYPE = {
 };
 
 const CustomDrawer: React.FC<Props> = ({ open, handleOpen, selectedSale }) => {
+  const getStatusLabel = (item: any) => {
+    return item.status === STATUS.SUCCESSFUL ? (
+      <div className="sale-status-container">
+        <CheckCircleIcon className="check-icon" />
+        <p>¡Cobro exitoso!</p>
+      </div>
+    ) : (
+      <div className="sale-status-container">
+        <CancelIcon className="cancel-icon" />
+        <p>Cobro no realizado</p>
+      </div>
+    );
+  };
   const getSalesTypeIcon = (type: string) => {
-    const paymentIcon = <InsertLinkIcon />;
-    const dataphoneIcon = <PhoneAndroidIcon />;
+    const paymentIcon = <InsertLinkIcon className="custom-icon" />;
+    const dataphoneIcon = <PhoneAndroidIcon className="custom-icon" />;
 
     return type === SALES_TYPE.PAYMENT_LINK ? paymentIcon : dataphoneIcon;
   };
 
-  const getSaleType = (saleType: any) => {
-    switch (saleType) {
-      case saleType === SALES_TYPE.PAYMENT_LINK:
-        return (
-          <div>
-            {getSalesTypeIcon(saleType)} <p>Link de pagos</p>
-          </div>
-        );
-        break;
-      case saleType === SALES_TYPE.TERMINAL:
-        return (
-          <div>
-            {getSalesTypeIcon(saleType)} <p>Pago por datáfono</p>
-          </div>
-        );
-        break;
-      default:
-        return <></>;
-        break;
-    }
+  const getSaleType = (item: any) => {
+    return item.salesType === SALES_TYPE.PAYMENT_LINK ? (
+      <div className="sale-type-label">
+        {getSalesTypeIcon(item.salesType)}
+        {'Link de pagos'}
+      </div>
+    ) : (
+      <div className="sale-type-label">
+        {getSalesTypeIcon(item.salesType)}
+        {'Datáfono'}
+      </div>
+    );
   };
 
   const getCardIcon = (franchise: string) => {
@@ -60,8 +66,8 @@ const CustomDrawer: React.FC<Props> = ({ open, handleOpen, selectedSale }) => {
         xmlns="http://www.w3.org/2000/svg"
         x="0px"
         y="0px"
-        width="40"
-        height="40"
+        width="1rem"
+        height="1rem"
         viewBox="0 0 48 48"
       >
         <path
@@ -84,8 +90,8 @@ const CustomDrawer: React.FC<Props> = ({ open, handleOpen, selectedSale }) => {
         xmlns="http://www.w3.org/2000/svg"
         x="0px"
         y="0px"
-        width="40"
-        height="40"
+        width="1rem"
+        height="1rem"
         viewBox="0 0 48 48"
       >
         <path
@@ -108,8 +114,8 @@ const CustomDrawer: React.FC<Props> = ({ open, handleOpen, selectedSale }) => {
         xmlns="http://www.w3.org/2000/svg"
         x="0px"
         y="0px"
-        width="40"
-        height="40"
+        width="1rem"
+        height="1rem"
         viewBox="0 0 48 48"
       >
         <path
@@ -132,7 +138,7 @@ const CustomDrawer: React.FC<Props> = ({ open, handleOpen, selectedSale }) => {
 
   const getPaymentMethod = (item: any) => {
     return item.paymentMethod === 'CARD' ? (
-      <div className="payment-label">
+      <div className="drawer-payment-label">
         {getCardIcon(item.franchise)} <p>****{item.transactionReference}</p>
       </div>
     ) : (
@@ -140,7 +146,7 @@ const CustomDrawer: React.FC<Props> = ({ open, handleOpen, selectedSale }) => {
     );
   };
 
-  console.log('selectedSale', selectedSale)
+  console.log('selectedSale', selectedSale);
   return (
     selectedSale && (
       <Drawer open={open} onClose={() => handleOpen(false)} anchor="right">
@@ -149,41 +155,32 @@ const CustomDrawer: React.FC<Props> = ({ open, handleOpen, selectedSale }) => {
             className="drawer-close"
             onClick={() => handleOpen(false)}
           />
-          <div>
-            {selectedSale.status === STATUS.SUCCESSFUL ? (
-              <div className="sale-status-container">
-                <CheckCircleIcon className="check-icon" fill="green" />
-                <p>¡Cobro exitoso!</p>
+          <div className="sale-description">
+            <div className="section-one">
+              {getStatusLabel(selectedSale)}
+              <h2>{formatToCurrency(selectedSale.amount)}</h2>
+              <p>{new Date(selectedSale.createdAt).toLocaleString()}</p>
+            </div>
+            <div className="section-two">
+              <div className="item-colums">
+                <p>ID transacción Bold</p>
+                <p className='drawer-saleId'>{selectedSale.id}</p>
               </div>
-            ) : (
-              <div className="sale-status-container">
-                <div className="section-one">
-                  <CancelIcon className="cancel-icon" />
-                  <p>Cobro no realizado</p>
-                  <h2>{formatToCurrency(selectedSale.amount)}</h2>
-                  <p>{new Date(selectedSale.createdAt).toLocaleString()}</p>
+              <div className="item-colums">
+                <p>Deducción Bold</p>
+                <p className='drawer-deduction-number'>- $ 3.000</p>
+              </div>
+              <div className="payment-content">
+                <div className="item-colums">
+                  <p>Método de pago</p>
+                  <p>{getPaymentMethod(selectedSale)}</p>
                 </div>
-                <div className="section-two">
-                  <div className="item-colums">
-                    <p>ID transacción Bold</p>
-                    <p>{selectedSale.id}</p>
-                  </div>
-                  <div className="item-colums">
-                    <p>Deducción Bold</p>
-                    <p>- $ 3.000</p>
-                  </div>
-                  <hr className="drawer-line" />
-                  <div className="item-colums">
-                    <p>Método de pago</p>
-                    <p>{getPaymentMethod(selectedSale)}</p>
-                  </div>
-                  <div className="item-colums">
-                    <p>Tipo de pago</p>
-                    {getSaleType(selectedSale.salesType)}
-                  </div>
+                <div className="item-colums">
+                  <p>Tipo de pago</p>
+                  {getSaleType(selectedSale)}
                 </div>
               </div>
-            )}
+            </div>
           </div>
         </div>
       </Drawer>
