@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './styles.css';
 import { Props } from './interface';
+import RuleIcon from '@mui/icons-material/Rule';
 
 const Filter: React.FC<Props> = ({ applyFilters }) => {
   const [selectedFilters, setSelectedFilters] = useState<string[]>([]);
@@ -26,16 +27,7 @@ const Filter: React.FC<Props> = ({ applyFilters }) => {
     <div className="filter-dropdown">
       <button className="dropdown-toggle" onClick={toggleDropdown}>
         <p>Filtrar</p>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="16"
-          height="16"
-          fill="currentColor"
-          className="bi bi-filter-right"
-          viewBox="0 0 16 16"
-        >
-          <path d="M14 10.5a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0 0 1h3a.5.5 0 0 0 .5-.5m0-3a.5.5 0 0 0-.5-.5h-7a.5.5 0 0 0 0 1h7a.5.5 0 0 0 .5-.5m0-3a.5.5 0 0 0-.5-.5h-11a.5.5 0 0 0 0 1h11a.5.5 0 0 0 .5-.5" />
-        </svg>
+        <RuleIcon/>
       </button>
       {dropdownOpen && (
         <div className="dropdown-menu">
@@ -43,6 +35,7 @@ const Filter: React.FC<Props> = ({ applyFilters }) => {
             <input
               type="checkbox"
               value="TERMINAL"
+              checked={selectedFilters.includes('TERMINAL')}
               onChange={handleCheckboxChange}
             />
             Cobro con datáfono
@@ -51,6 +44,7 @@ const Filter: React.FC<Props> = ({ applyFilters }) => {
             <input
               type="checkbox"
               value="PAYMENT_LINK"
+              checked={selectedFilters.includes('PAYMENT_LINK')}
               onChange={handleCheckboxChange}
             />
             Cobro con link de pago
@@ -59,6 +53,7 @@ const Filter: React.FC<Props> = ({ applyFilters }) => {
             <input
               type="checkbox"
               value="ALL"
+              checked={selectedFilters.includes('ALL')}
               onChange={handleCheckboxChange}
             />
             Ver todos

@@ -1,5 +1,5 @@
 import React from 'react';
-import Tooltip from '../Tooltip/Tooltip';
+import CustomTooltip from '../Tooltip/Tooltip';
 import './styles.css';
 
 const Navbar = () => {
@@ -10,7 +10,11 @@ const Navbar = () => {
         <p>Mi negocio</p>
         <div className="navbar-help-container">
           <p>Ayuda</p>
-          <Tooltip type="help" text="Este es un tooltip de ayuda" />
+          <CustomTooltip
+            type="help"
+            text="Conoce más trabajo del creador de ésta página"
+            redirect={'https://github.com/martincorredor'}
+          />
         </div>
       </div>
     </nav>

@@ -11,6 +11,8 @@
   position: relative;
   display: inline-block;
   width: 15vw;
+  min-width: 120px;
+  border-radius: 10px;
 }
 
 .dropdown-toggle {

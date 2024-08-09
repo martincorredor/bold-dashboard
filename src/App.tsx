@@ -135,12 +135,12 @@ function App() {
 
     let newFilteredData = filteredData;
     if (filters.includes('TERMINAL')) {
-      newFilteredData = newFilteredData.filter(
+      newFilteredData = filteredData.filter(
         (item) => item.salesType === 'TERMINAL'
       );
     }
     if (filters.includes('PAYMENT_LINK')) {
-      newFilteredData = newFilteredData.filter(
+      newFilteredData = filteredData.filter(
         (item) => item.salesType === 'PAYMENT_LINK'
       );
     }
