@@ -18,9 +18,7 @@ const CustomTooltip: React.FC<Props> = ({ type, text, redirect }) => {
 
   return (
     <Tooltip title={text} placement="top-start" className="custom-tooltip">
-      <a className="tooltip-link" href={redirect || '#'}>
-        {getIcon()}
-      </a>
+      {getIcon()}
     </Tooltip>
   );
 };

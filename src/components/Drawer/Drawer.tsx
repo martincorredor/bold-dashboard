@@ -146,7 +146,6 @@ const CustomDrawer: React.FC<Props> = ({ open, handleOpen, selectedSale }) => {
     );
   };
 
-  console.log('selectedSale', selectedSale);
   return (
     selectedSale && (
       <Drawer open={open} onClose={() => handleOpen(false)} anchor="right">

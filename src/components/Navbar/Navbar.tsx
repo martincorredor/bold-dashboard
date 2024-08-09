@@ -1,6 +1,7 @@
 import React from 'react';
 import CustomTooltip from '../Tooltip/Tooltip';
 import './styles.css';
+import Link from '@mui/material/Link';
 
 const Navbar = () => {
   return (
@@ -9,7 +10,14 @@ const Navbar = () => {
       <div className="navbar-items">
         <p>Mi negocio</p>
         <div className="navbar-help-container">
-          <p>Ayuda</p>
+          <Link
+            href="https://github.com/martincorredor"
+            underline="none"
+            color="#fff"
+            target='_blank'
+          >
+            Ayuda
+          </Link>
           <CustomTooltip
             type="help"
             text="Conoce más trabajo del creador de ésta página"

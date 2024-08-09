@@ -18,12 +18,6 @@ function App() {
   const [formattedDate, setFormattedDate] = useState('');
   const [dataToTable, setDataToTable] = useState(filteredData);
 
-
-  useEffect(() => {
-    setDataToTable(filteredData)
-  }, [filteredData])
-  
-
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -40,6 +34,23 @@ function App() {
   useEffect(() => {
     setFilteredData(data);
   }, [data]);
+
+  useEffect(() => {
+    const savedFilter = localStorage.getItem('selectedFilter');
+    const savedSalesTypeFilters = localStorage.getItem('salesTypeFilters');
+
+    if (savedFilter) {
+      handleFilterChange(savedFilter, true);
+    }
+
+    if (savedSalesTypeFilters) {
+      applySalesTypeFilters(JSON.parse(savedSalesTypeFilters));
+    }
+  }, [data]);
+
+  useEffect(() => {
+    setDataToTable(filteredData);
+  }, [filteredData]);
 
   useEffect(() => {
     const formatDate = (filter: string) => {
@@ -76,8 +87,12 @@ function App() {
     setFormattedDate(formatDate(selectedFilter));
   }, [selectedFilter]);
 
-  const handleFilterChange = (filter: string) => {
+  const handleFilterChange = (filter: string, initializing = false) => {
+    if (!initializing) {
+      localStorage.setItem('selectedFilter', filter); 
+    }
     setSelectedFilter(filter);
+
     let newFilteredData;
     const today = new Date().setHours(0, 0, 0, 0);
     const weekAgo = today - 7 * 24 * 60 * 60 * 1000;
@@ -125,6 +140,8 @@ function App() {
   };
 
   const applySalesTypeFilters = (filters: string[]) => {
+    localStorage.setItem('salesTypeFilters', JSON.stringify(filters));
+
     if (filters.includes('ALL')) {
       setDataToTable(filteredData);
       return;
@@ -190,9 +207,11 @@ function App() {
             </div>
           </>
         ) : (
-          <div className='loading-container'>
+          <div className="loading-container">
             <CircularProgress />
-            <p>Espera un poco, estamos trabajando lo más rápido que podemos...</p>
+            <p>
+              Espera un poco, estamos trabajando lo más rápido que podemos...
+            </p>
           </div>
         )}
       </div>
