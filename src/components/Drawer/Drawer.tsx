@@ -66,8 +66,8 @@ const CustomDrawer: React.FC<Props> = ({ open, handleOpen, selectedSale }) => {
         xmlns="http://www.w3.org/2000/svg"
         x="0px"
         y="0px"
-        width="1rem"
-        height="1rem"
+        width="1.3rem"
+        height="1.3rem"
         viewBox="0 0 48 48"
       >
         <path
@@ -90,8 +90,8 @@ const CustomDrawer: React.FC<Props> = ({ open, handleOpen, selectedSale }) => {
         xmlns="http://www.w3.org/2000/svg"
         x="0px"
         y="0px"
-        width="1rem"
-        height="1rem"
+        width="1.3rem"
+        height="1.3rem"
         viewBox="0 0 48 48"
       >
         <path
@@ -114,8 +114,8 @@ const CustomDrawer: React.FC<Props> = ({ open, handleOpen, selectedSale }) => {
         xmlns="http://www.w3.org/2000/svg"
         x="0px"
         y="0px"
-        width="1rem"
-        height="1rem"
+        width="1.3rem"
+        height="1.3rem"
         viewBox="0 0 48 48"
       >
         <path
@@ -163,11 +163,13 @@ const CustomDrawer: React.FC<Props> = ({ open, handleOpen, selectedSale }) => {
             <div className="section-two">
               <div className="item-colums">
                 <p>ID transacción Bold</p>
-                <p className='drawer-saleId'>{selectedSale.id}</p>
+                <p className="drawer-saleId">{selectedSale.id}</p>
               </div>
               <div className="item-colums">
                 <p>Deducción Bold</p>
-                <p className='drawer-deduction-number'>- $ 3.000</p>
+                <p className="drawer-deduction-number">
+                  {formatToCurrency(selectedSale.deduction || 0)}
+                </p>
               </div>
               <div className="payment-content">
                 <div className="item-colums">
