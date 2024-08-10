@@ -28,7 +28,7 @@ const SalesTable: React.FC<Props> = ({ filteredData, tableTitle }) => {
 
   const handleOpenDrawer = (sale: any) => {
     setSelectedSale(sale);
-    selectedSale !== null && setOpen(true);
+    setOpen(true);
   };
 
   const toggleDrawer = (newOpen: boolean) => {
